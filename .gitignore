@@ -1,0 +1,9 @@
+#NodeModules
+node_modules
+
+#env
+.env
+
+#JsHint
+.jshintrc
+
