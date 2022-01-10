@@ -1,11 +1,25 @@
 <%- include('../partials/header.ejs') %>
 
-<div class="form group">
-    <div class="">
+<form action="">
 
+    <!-- EMAIL DIV -->
+    <div class="form-group">
+        <label for="email"> Email address </label>
+        <input class="form-control" type="email" id="email" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">Enter your best email.</small>
     </div>
 
-</div>
+    <!-- PASSWORDS DIV -->
+    <div class="form-group">
+        <label for="password1">Password</label>
+        <input type="password" class="form-control" id="password1">
+    </div>
+    <div class="form-group">
+        <label for="password2">Re-enter Password</label>
+        <input type="password" class="form-control" id="password2">
+    </div>
 
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 <%- include('../partials/footer.ejs') %>
