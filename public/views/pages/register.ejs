@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs') %>
 
-<form action="">
+<form action="/register" method="post" id="register">
 
     <!-- EMAIL DIV -->
     <div class="form-group">
@@ -19,7 +19,29 @@
         <input type="password" class="form-control" id="password2">
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="#" method="POST" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Submit </a>
+
 </form>
+<a href="/"><input type="submit" form="#register" class="btn btn-primary" value="Go Back"></a>
+
+<!-- MODAL MESSAGE BOX -->
+
+<div class="modal" role="dialog" tabindex="-1" id="myModal">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1> <%= title %> </h1>
+            </div>
+            <div class="modal-body">
+                <p><%= message %> </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
 <%- include('../partials/footer.ejs') %>
