@@ -1,47 +1,47 @@
 <%- include('../partials/header.ejs') %>
 
+<h1>Register</h1>
+<% if (typeof alert != 'undefined') { %>
+<% alert.forEach(function(error) { %>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Error!</strong> <%= error.msg  %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<% }) %>
+<% } %>
+
+<!--FORM  -->
 <form action="/register" method="post" id="register">
 
     <!-- EMAIL DIV -->
     <div class="form-group">
         <label for="email"> Email address </label>
-        <input class="form-control" type="email" id="email" aria-describedby="emailHelp">
+        <input class="form-control" type="email" name="email" id="email" aria-describedby="emailHelp">
         <small id="emailHelp" class="form-text text-muted">Enter your best email.</small>
     </div>
 
     <!-- PASSWORDS DIV -->
     <div class="form-group">
-        <label for="password1">Password</label>
-        <input type="password" class="form-control" id="password1">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" id="password">
     </div>
     <div class="form-group">
-        <label for="password2">Re-enter Password</label>
-        <input type="password" class="form-control" id="password2">
+        <label for="confirmPassword">Re-enter Password</label>
+        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
     </div>
 
-    <a href="#" method="POST" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Submit </a>
 
 </form>
-<a href="/"><input type="submit" form="#register" class="btn btn-primary" value="Go Back"></a>
 
-<!-- MODAL MESSAGE BOX -->
+<div class="form-group">
+    <button form="register" type="submit"> Submit
+    </button>
 
-<div class="modal" role="dialog" tabindex="-1" id="myModal">
-    <div class="modal-dialog modal-sm modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1> <%= title %> </h1>
-            </div>
-            <div class="modal-body">
-                <p><%= message %> </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Close</button>
-            </div>
-
-        </div>
-    </div>
+    <a href="/"><input type="submit" class=" btn btn-primary" value="Go Back"></a>
 </div>
+
 
 
 <%- include('../partials/footer.ejs') %>
