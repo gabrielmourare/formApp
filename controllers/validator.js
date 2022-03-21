@@ -1,12 +1,13 @@
-const {
-    promiseImpl
-} = require('ejs');
+const User = require('../database/models/userModel');
+const dbConnect = require('../database/connection/dbconnect');
 const {
     body,
-    validationResult
+    validationResult,
+    check
 } = require('express-validator');
 
-exports.validationBodyRules = [
+
+exports.registerValidator = [
     body('email').not().isEmpty().withMessage('Enter a valid email.'),
     body('email').isEmail().withMessage('Enter a valid email'),
     body('email').normalizeEmail(),
@@ -26,12 +27,28 @@ exports.validationBodyRules = [
 
 ];
 
+exports.registerUserValidator = [
+
+    check('email').custom(email => {
+        dbConnect.connectDB();
+        return User.findOne({
+                email
+            })
+            .then(user => {
+                if (user) {
+                    return Promise.reject('User already exists');
+                }
+            });
+    })
+]
 
 exports.checkRules = (req, res, next) => {
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        const alert = errors.array();
+        const alert = errors.array({
+            onlyFirstError: true
+        });
         res.render('../public/views/pages/register.ejs', {
             alert
         });
