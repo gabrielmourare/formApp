@@ -42,6 +42,13 @@ exports.registerUserValidator = [
     })
 ]
 
+exports.loginValidator = [
+    body('email').not().isEmpty().withMessage('Enter a valid email.'),
+    body('email').isEmail().withMessage('Enter a valid email'),
+    body('email').normalizeEmail(),
+    body('password').not().isEmpty().withMessage('Enter a password')
+]
+
 exports.checkRules = (req, res, next) => {
 
     const errors = validationResult(req);

@@ -2,6 +2,7 @@
 const dotenv = require('dotenv').config();
 const PORT = process.env.PORT;
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 //DB URI and Connection
 const dbURI = process.env.MONGO_URI;
@@ -16,6 +17,8 @@ app.use(express.json());
 app.use(express.urlencoded({ // ALLOWS BODY PARSER
     extended: false
 }));
+app.use(cookieParser());
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
