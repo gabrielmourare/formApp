@@ -1,6 +1,5 @@
 <%- include('../partials/header.ejs') %>
 
-<h1>Register</h1>
 <% if (typeof alert != 'undefined') { %>
 <% alert.forEach(function(error) { %>
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -12,35 +11,34 @@
 <% }) %>
 <% } %>
 
-<!--FORM  -->
-<form action="/register" method="post" id="register">
 
-    <!-- EMAIL DIV -->
-    <div class="form-group">
-        <label for="email"> Email address </label>
-        <input class="form-control" type="email" name="email" id="email" aria-describedby="emailHelp">
+
+<div class="loginArea">
+    <form action="/register" method="post" id="register" class="form-signin">
+
+        <h1 class="h3 mb-3 font-weight-normal">Please Log in</h1>
+        <label for="email" class="sr-only">Email address</label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="Email address"
+            aria-describedby="emailHelp" required="true">
         <small id="emailHelp" class="form-text text-muted">Enter your best email.</small>
-    </div>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+            required="true">
 
-    <!-- PASSWORDS DIV -->
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" id="password">
-        <small id="passwordHelp" class="form-text text-muted">Password must be at least 6 characters long</small>
-    </div>
-    <div class="form-group">
         <label for="confirmPassword">Re-enter Password</label>
-        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
-    </div>
+        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" required="true"
+            placeholder="Re-enter password">
+
+        <button class="btn btn-lg btn-dark btn-block" type="submit">Register</button>
+        <a class="btn btn-lg btn-dark btn-block" href="/">Go Back</a>
 
 
-</form>
+        <p class="mt-5 mb-3 text-muted">© Ido Longbeard</p>
+    </form>
 
-<div class="form-group">
-    <button form="register" type="submit" class="btn btn-primary"> Submit
-    </button>
 
-    <a href="/"><input type="submit" class=" btn btn-primary" value="Go Back"></a>
+
+
 </div>
 
 

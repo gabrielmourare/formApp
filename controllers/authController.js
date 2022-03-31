@@ -1,6 +1,8 @@
+const User = require('../database/models/userModel');
+const connectDb = require('../database/connection/dbconnect');
 const jwt = require('jsonwebtoken');
 
-const requireAuth = (req, res, next) => {
+const authenticate = (req, res, next) => {
     const token = req.cookies.jwt;
 
     // check if token exists and is valid \/
@@ -18,4 +20,30 @@ const requireAuth = (req, res, next) => {
     }
 }
 
-module.exports = requireAuth
+const checkUser = (req, res, next) => {
+    const token = req.cookies.jwt;
+
+    if (token) {
+        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
+            if (err) {
+                console.log(err);
+                res.locals.user = null
+                next();
+            } else {
+                connectDb.connectDB();
+
+                let user = await User.findById(decoded.userId);
+                res.locals.user = user;
+                next();
+            }
+        })
+    } else {
+        res.locals.user = null;
+        next();
+    }
+}
+
+module.exports = {
+    authenticate,
+    checkUser
+}

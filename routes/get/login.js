@@ -1,5 +1,5 @@
-const homeRoute = (req,res) => {
-    res.render('../public/views/pages/home.ejs');
+const loginRoute = (req, res) => {
+    res.render('../public/views/pages/login.ejs');
 };
 
-module.exports = homeRoute;
+module.exports = loginRoute;

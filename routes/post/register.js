@@ -5,9 +5,10 @@ const jwt = require('jsonwebtoken');
 const jwtController = require('../../controllers/jwtController');
 
 
-const registerUser = async (req, res, next) => {
+const registerUser = (req, res, next) => {
 
-    await passwordUtil.hashesPassword(req.body.password).then((hashedPassword) => {
+    passwordUtil.hashesPassword(req.body.password).then((hashedPassword) => {
+
         User.create({
             email: req.body.email,
             password: hashedPassword
@@ -20,7 +21,7 @@ const registerUser = async (req, res, next) => {
                     maxAge: maxAge
                 })
                 //check if user is logged in and log it in or redirect
-                res.redirect('/index');
+                res.redirect('/dashboard');
             } else {
                 const error = {
                     msg: "User couldn't be created. Contact the system admin"

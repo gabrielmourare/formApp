@@ -3,6 +3,7 @@ const dotenv = require('dotenv').config();
 const PORT = process.env.PORT;
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const authController = require('./controllers/authController');
 
 //DB URI and Connection
 const dbURI = process.env.MONGO_URI;
@@ -27,9 +28,8 @@ app.use(bodyParser.urlencoded({
 
 //ROUTER
 const router = require('./routes/router');
-
-
-
+app.post('*', authController.checkUser);
+app.get('*', authController.checkUser);
 app.use('/', router);
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
